@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background-color: #ADE6FF;
+}
+
+.time {
+    width: 190px;
+    height: 130px;
+    background-color: #262626;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 0 10px #262626;
+    position: fixed;
+    top: 0;
+    left: 1370px;
+    padding: 17px 23px 23px 23px;
+    display: none;
+    p {
+        color: #FFF;
+    }
+    p:nth-of-type(2){
+        font-size: 3.625rem;
+    }
+}
+.status {
+    font-family: 'Noto Sans TC', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+
+}
+.notice{
+    width: 700px;
+    background-color: #FFF;
+    border-radius: 30px;
+    text-align: center;
+    padding: 20px 45px 24px;
+    >h1{
+        width: 100%;
+        color: #FF952B;
+    }
+    >p{
+        color: #707070;
+        font-size: 0.875rem;
+    }
+    button{
+        font-family: 'Noto Sans TC', sans-serif;
+        width: 150px;
+        height: 50px;
+        border: 3px solid #707070;
+        background-color: #9A7B5D;
+        color: #FFF;
+        border-radius: 5px;
+        font-size: 1.25rem;
+        margin-top: 20px;
+        outline: none;
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            top: -7px;
+            left: -3px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #707070;
+            background-color: #FF952B;
+            border-radius: 5px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        &:hover{
+            background-color: #b0a15a;
+        }
+        &:hover::before {
+            background-color: #FFDF47;
+            color: #FF952B;
+        }
+    }
+}
+.start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 210px;
+    position: relative;
+    >button{
+        margin-bottom: 10px;
+        &::before{
+            content: '遊戲開始';
+        }
+    }
+    >img{
+        position: absolute;
+        top: -60px;
+        right: -60px;
+    }
+}
+.win{
+    height: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    display: none;
+    >img{
+        margin-top: 20px;
+    }
+    button{
+        &::before{
+            content: '再來一次...';
+        }
+    }
+    >div{
+        width: 100%;
+    }
+}
+.lose {
+    display: none;
+    height: 180px;
+    position: relative;
+    >h1{
+        font-size: 1.25rem;
+    }
+    >button{
+        &::before{
+            content: '重新挑戰';
+        }
+    }
+    >img{
+        position: absolute;
+        top: -60px;
+        right: -60px;
+    }
+}
+.comic1{
+    animation: comic .5s;
+}
+.comic2{
+    animation: comic 1.5s;
+}
+.comic3{
+    animation: comic 2.5s;
+}
+.shack{
+    animation: shack 3.5s;
+}
+.fail_shack{
+    animation: shack2 .5s;
+}
+.fall {
+    animation: fall .8s;
+    transform: rotate(-90deg);
+}
+.walk {
+    animation: walk 15s infinite;
+}
+@keyframes comic {
+    0%{opacity: 0}
+    90%{opacity: 0}
+    100%{opacity: 1}
+}
+@keyframes shack {
+    0%{
+        opacity: 0;
+    }
+    80%{
+        opacity: 0;
+        transform: rotate(-10deg);
+    }
+    85%{
+        transform: rotate(10deg);
+    }
+    90%{
+        transform: rotate(-10deg);
+    }
+    95%{
+        transform: rotate(10deg);
+    }
+    100%{
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+@keyframes shack2 {
+    10%{
+        transform: rotate(-10deg);
+    }
+    25%{
+        transform: rotate(10deg);
+    }
+    30%{
+        transform: rotate(-10deg);
+    }
+    45%{
+        transform: rotate(10deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+@keyframes fall {
+    0%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-90deg);
+    }
+}
+@keyframes walk {
+    0%{
+        top: -140px;
+        right: -60px;
+    }
+    10%{
+        top: -140px;
+        right: -60px;
+        transform: rotate(-90deg);
+    }
+    35%{
+        top: -140px;
+        right: 630px;
+        transform: rotate(-90deg);
+    }
+    40%{
+        top: -140px;
+        right: 630px;
+        transform: rotate(-180deg);
+    }
+    50%{
+        top: 120px;
+        right: 630px;
+        transform: rotate(-180deg);
+    }
+    55%{
+        top: 120px;
+        right: 630px;
+        transform: rotate(-270deg);
+    }
+    80%{
+        top: 120px;
+        right: -60px;
+        transform: rotate(-270deg);
+    }
+    85%{
+        top: 120px;
+        right: -60px;
+        transform: rotate(-360deg);
+    }
+    100%{
+        top: -140px;
+        right: -60px;
+        transform: rotate(-360deg);
+    }
+
+}

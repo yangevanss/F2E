@@ -1,0 +1,132 @@
+$normalWhite: #FFFFFF;
+$mainGray_D: #4B4B4B;
+$mainGray_L: #F3F3F3;
+$mainGray: #F7F7F7;
+$mainGreen: #36B996;
+$mainGreen_L: #B5FFE4;
+$stepGreen: #8DEFCB;
+$stepGray_L: #D8D8D8;
+$textGray: #5E5E5E;
+.main_content {
+    width: 95.15%;
+}
+.pay{
+    text-align: center;
+    font-weight: 300;
+    &_text{
+        margin-bottom: 89px;
+    }
+    &_finish{
+        font-weight: 300;
+        position: relative;
+        z-index: 1;
+        margin-bottom: 68px;
+        font-size: 0.875rem;
+            &::before{
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 146px;
+                height: 146px;
+                border-radius: 50%;
+                background-color: $mainGreen_L;
+                z-index: -1;
+            }
+        }
+    .btn{
+        margin-top: 30px;
+    }
+    &_finish2{
+        text-align: left;
+        font-size: 0.875rem;
+        >div{
+            margin-bottom: 32px;
+            p:nth-of-type(2){
+                font-size: 1.5rem;
+                margin-top: 2px;
+            }
+        }
+    }
+    &_next{
+        margin-top: 66px;
+    }
+}
+.main_slide{
+    width: 32px;
+    position: relative;
+    >P{
+        position: absolute;
+        top: 30%;
+        left: -85px;
+        font-size: 1.25rem;
+        letter-spacing: 2.1px;
+        &::before{
+            position: absolute;
+            content: '';
+            width: 10px;
+            height: 2px;
+            top: -10px;
+            right: 0;
+            background-color: $textGray;
+            transform: rotate(45deg);
+        }
+        &::after{
+            position: absolute;
+            content: '';
+            width: 10px;
+            height: 2px;
+            bottom: -10px;
+            right: 0;
+            background-color: $textGray;
+            transform: rotate(-45deg);
+        }
+
+    }
+}
+.step {
+    &::before{
+        background-color: $stepGreen
+    }
+    >li{
+        background-color: $stepGreen;
+    }
+}
+.finish{
+    animation: finish 1s;
+}
+@keyframes finish{
+    0%{transform: scale(0.5)}
+    15%{transform: scale(0.9)}
+    30%{transform: scale(0.5)}
+    45%{transform: scale(0.9)}
+    70%{transform: scale(0.3)}
+    100%{transform: scale(1)}
+}
+@media screen and (max-width: 1023px) {
+    .pay {
+        &_text {
+            margin-bottom: 35px;
+        }
+        &_next{
+            margin: 0;
+            >.btn{
+                margin: 0;
+            }
+        }
+    }
+    .main_slide {
+        display: none;
+    }
+    .main_content{
+        width: 100%;
+    }
+    &_finish2 {
+        position: relative;
+        .btn {
+            position: absolute;
+            bottom: 0;
+        }
+    }
+}

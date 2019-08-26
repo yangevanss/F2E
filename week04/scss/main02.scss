@@ -1,0 +1,186 @@
+$stepGreen: #8DEFCB;
+$stepGray_L: #D8D8D8;
+$stepGray_D: #AFAFAF;
+$mainGreen: #36B996;
+$borderGray: #979797;;
+.step {
+    &::before {
+        background-image: linear-gradient(to right, $stepGreen 25%, $stepGray_L);
+    }
+    >li:nth-of-type(1){
+        background-color: $stepGreen;
+    }
+    >li:nth-of-type(2) {
+        background-color: $stepGreen;
+    }
+    >li:nth-of-type(3){
+        background-color: $stepGray_D;
+    }
+}
+.pay{
+    font-size: 0.875rem;
+    font-weight: 300;
+    &_text {
+        margin-bottom: 48px;
+        >p {
+            font-size: 0.75rem;
+            font-weight: 300;
+            margin-top: 7px;
+        }
+    }
+    &_input {
+        display: flex;
+        align-items: center;
+        margin-bottom: 19px;
+        label {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid $borderGray;
+            position: relative;
+        }
+        >p{
+            margin: 0 30px 0 9px;
+        }
+    }
+    &_check{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+        label {
+            position: relative;
+            width: 15px;
+            height: 15px;
+            border-radius: 5px;
+            border: 1px solid $borderGray;
+            margin-top: 5px;
+        }
+        >div{
+            width: 91.79%;
+            margin-left: 10px;
+        }
+        P:nth-of-type(2){
+            color: $borderGray;
+        }
+    }
+    &_next {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 28px;
+    }
+    &_creditCard_number,
+    &_creditCard_date,
+    &_creditCard_last,
+    &_mail
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 19px;
+        >P:nth-of-type(1){
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        >p:not(:nth-of-type(1)){
+            margin: 0 7.5px;
+        }
+        >input {
+            height: 34px;
+            border-radius: 5px;
+            border: 1px solid $borderGray;
+            outline: none;
+            padding: 15px;
+        }
+    }
+    &_creditCard_number{
+        >input {
+            width: 61px;
+        }
+        div {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+        }
+    }
+    &_creditCard_date {
+        >select {
+            width: 93px;
+            height: 34px;
+            border-radius: 5px;
+            outline: none;
+        }
+    }
+    &_creditCard_last {
+        >input {
+            width: 93px;
+            margin-right: 12px;
+        }
+    }
+    &_mail {
+        width: 235px;
+    }
+}
+input[type='radio'],
+input[type='checkbox'],
+input[type='submit'] {
+    display: none;
+}
+input[type='radio']:checked + label{
+    &::before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 10px;
+        height: 10px;
+        background-color: $mainGreen;
+        border-radius: 50%;
+    }
+}
+input[type='checkbox']:checked + label{
+    &::before{
+        content: '✔';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+}
+input:invalid:focus {
+    border: 1px solid red;
+}
+@media screen and (max-width:1200px) {
+    .pay{
+        &_text {
+            margin-bottom: 35px;
+        }
+        &_creditCard_number {
+            div {
+                margin: 0;
+            }
+        }
+        &_next {
+            margin-top: 0;
+            justify-content: flex-end;
+        }
+    }
+}
+@media screen and (max-width:600px) {
+    .pay{
+        height: auto;
+        &_text {
+            >p {
+                display: none;
+            }
+        }
+        &_creditCard_number {
+            >div:last-of-type {
+                display: none;
+            }
+            >p:not(:nth-of-type(1)){
+                margin: 2.5px;
+            }
+        }
+    }
+}

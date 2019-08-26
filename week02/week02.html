@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FreeCell</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css' />
+    <link rel="stylesheet" href="./scss/all.css">
+</head>
+
+<body>
+    <div id="app">
+            <div class="logo" v-if='start === false'>
+                <img src="./Picture/logo (1).svg" alt="">
+            </div>
+            <div class="main" v-if='start === true'>
+                <div class="content">
+                    <div class="top">
+                        <img src="./Picture/logo.svg">
+                        <div>
+                            <div class="time"><i class="far fa-clock"></i> {{ timeM }}:{{ timeS }}</div>
+                            <div class="moves">{{ moves }} Moves</div>
+                        </div>
+                    </div>
+                    <div class="cardTop">
+                        <div class="blankCard" v-for='blankBox in blankBoxes' @drop='dropToBlankBoxes(blankBox)'
+                            @dragover='allowDrop'>
+                            <img :src="card.src" v-for='card in blankBox' @dragstart='dragFormBoxes(card, blankBox)'>
+                        </div>
+                        <div class="standardCard" v-for='standardBox in standardBoxes'
+                            @drop='dropToStandardBoxes(standardBox)' @dragover='allowDrop'>
+                            <img :src="card.src" v-for='card in standardBox'>
+                        </div>
+                    </div>
+                    <div class="cardBoxes" v-if='win === false'>
+                        <div class="cardBox" v-for='cardBox in cardBoxes' @drop='dropToCardBoxes(cardBox)'
+                            @dragover='allowDrop'>
+                            <img :src="card.src" v-for='card,index in cardBox'
+                                @dragstart='dragFormBoxes(card, cardBox)'>
+                        </div>
+                    </div>
+                    <div class="win" v-if='win === true'>
+                        <h1>congratulations</h1>
+                        <p>{{ moves }} MOVES</p>
+                        <p>TIME: {{ timeM }}:{{ timeS }}</p>
+                        <div @click='playNewGame'>start a new game</div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="./Picture/new – 4.svg" @click='newGame'>
+                    <img src="./Picture/ewnew – 2.png" @click='restartGame' width="75px">
+                    <img src="./Picture/undo – 2.svg" @click='undo'>
+                </div>
+            </div>
+        <transition name='fade'>
+            <div class='pause' v-if='pause === true'>
+                <img src="./Picture/alert.svg">
+                <p v-if='restartG === true'>Do you want to restart the current game? This will undo all your moves.
+                </p>
+                <p v-if='newG === true'>You have a game in progress.</p>
+                <div v-if='restartG === true' @click='restartThisGame'>restart the current game</div>
+                <div v-if='newG === true' @click='playNewGame'>Start A New Game</div>
+                <div @click='backGame'>Back to the current game</div>
+            </div>
+        </transition>
+    </div>
+
+
+
+
+
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+    <script src="./all.js"></script>
+</body>
+
+</html>

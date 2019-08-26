@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PAY</title>
+    <link rel="stylesheet" href="./scss/all.css">
+    <link rel="stylesheet" href="./scss/main01.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class='main' id="app">
+        <div class="container">
+            <section class="main_slide">
+                <h3>訂單資訊</h3>
+                <div class="main_slide_text">
+                    <div>
+                        <p>商品名稱：</p>
+                        <p>Iphone XR手機殼 x1</p>
+                    </div>
+                    <div>
+                        <p>訂單編號：</p>
+                        <p>17485739</p>
+                    </div>
+                    <div>
+                        <p>訂單金額：</p>
+                        <p>NT$ 600</p>
+                    </div>
+                </div>
+            </section>
+            <section class="main_content">
+                <div>
+                    <ul class="step">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </div>
+                <div class="pay">
+                    <button class="btn btn_gray">返回商店</button>
+                    <h1 class="pay_text">STEP1. 選擇付款方式</h1>
+                    <div class="pay_choice">
+                        <div class="pay_method" :class='{pay_method_hover: index === 1}' @click='selectPay("creditCard", 1)'>
+                            <img src="./icon/credit-card.svg" alt="icon" width="69px">
+                            <p>信用卡/金融卡</p>
+                        </div>
+                        <div class="pay_method" :class='{pay_method_hover: index === 2}' @click='selectPay("creditCard", 2)'>
+                            <img src="./icon/unionpay.svg" alt="icon" width="99px">
+                            <p>銀聯卡</p>
+                        </div>
+                        <div class="pay_method" :class='{pay_method_hover: index === 3}' @click='selectPay("shop", 3)'>
+                            <img src="./icon/shop.svg" alt="icon" width="74px">
+                            <p>超商付款</p>
+                        </div>
+                        <div class="pay_method" :class='{pay_method_hover: index === 4}' @click='selectPay("atm", 4)'>
+                            <img src="./icon/web-atm.svg" alt="icon" width="61px">
+                            <p>Web ATM</p>
+                        </div>
+                        <div class="pay_method" :class='{pay_method_hover: index === 5}' @click='selectPay("atm", 5)'>
+                            <img src="./icon/atm.svg" alt="icon" width="80px">
+                            <p>ATM 轉帳</p>
+                        </div>
+                    </div>
+                    <div class="pay_next">
+                        <a href="#js"><button class="btn btn_green" @click='next'>下一步</button></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+    <script src="./all.js"></script>
+</body>
+
+</html>

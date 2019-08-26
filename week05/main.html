@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Duck_Swimming</title>
+    <link rel="stylesheet" href="./scss/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="time">
+        <p>TIME</p>
+        <p></p>
+    </div>
+    <canvas id="canvas" width="1200" height="900"></canvas>
+    <div class="status" id="lose">
+        <div class="notice lose">
+            <h1>UH-OH! 觸礁了</h1>
+            <p>勝敗乃鴨家常事，大俠重新來過吧~</p>
+            <button class="fail_shack" id="replay"></button>
+            <img class="fall" src="./picture/duck_lose.svg" alt="duck">
+        </div>
+        <div class="notice win">
+            <h1>Congratulations! 恭喜過關!</h1>
+            <img class="comic1" src="./picture/img_clear01.svg" alt="win">
+            <img class="comic2" src="./picture/img_clear02.svg" alt="win">
+            <img class="comic3" src="./picture/img_clear03.svg" alt="win">
+            <div class="shack">
+                <button id="replay"></button>
+            </div>
+        </div>
+        <div class="notice start">
+            <button id="start"></button>
+            <div>
+                <img src="./picture/btn_left_off.svg" alt="picture">
+                <img src="./picture/btn_right_off.svg" alt="picture">
+            </div>
+            <img class='walk' src="./picture/duck_normal_02.svg" alt="picture">
+            <p>請按 ← 、 → 鍵移動鴨子</p>
+        </div>
+    </div>
+    <script src="./all.js"></script>
+</body>
+</html>

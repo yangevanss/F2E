@@ -1,0 +1,156 @@
+@charset "UTF-8";
+.step::before {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(25%, #8DEFCB), to(#D8D8D8));
+  background-image: linear-gradient(to right, #8DEFCB 25%, #D8D8D8);
+}
+
+.step > li:nth-of-type(1) {
+  background-color: #8DEFCB;
+}
+
+.step > li:nth-of-type(2) {
+  background-color: #8DEFCB;
+}
+
+.step > li:nth-of-type(3) {
+  background-color: #AFAFAF;
+}
+
+.pay {
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.pay_text {
+  margin-bottom: 48px;
+}
+
+.pay_text > p {
+  font-size: 0.75rem;
+  font-weight: 300;
+  margin-top: 7px;
+}
+
+.pay_check {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.pay_check label {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  border: 1px solid #979797;
+  margin-top: 5px;
+}
+
+.pay_check > div {
+  width: 91.79%;
+  margin-left: 10px;
+}
+
+.pay_check P:nth-of-type(2) {
+  color: #979797;
+}
+
+.pay_next {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 46px;
+}
+
+.pay_mail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 19px;
+}
+
+.pay_mail > P:nth-of-type(1) {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.pay_mail > p:not(:nth-of-type(1)) {
+  margin: 0 7.5px;
+}
+
+.pay_mail > input {
+  height: 34px;
+  border-radius: 5px;
+  border: 1px solid #979797;
+  outline: none;
+  padding: 15px;
+}
+
+.pay_convenience {
+  margin-bottom: 29px;
+}
+
+.pay_convenience > select {
+  width: 235px;
+  height: 34px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.pay_convenience > P {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.pay_mail {
+  width: 235px;
+  margin-bottom: 30px;
+}
+
+input[type='checkbox'],
+input[type='submit'] {
+  display: none;
+}
+
+input[type='checkbox']:checked + label::before {
+  content: '✔';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+input:invalid:focus {
+  border: 1px solid red;
+}
+
+@media screen and (max-width: 1200px) {
+  .pay_text {
+    margin-bottom: 35px;
+  }
+  .pay_next {
+    margin-top: 0;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .pay_text > p {
+    display: none;
+  }
+}
+/*# sourceMappingURL=main04.css.map */

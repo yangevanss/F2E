@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MP3 Player</title>
+    <link rel="stylesheet" href="./scss/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div id='app'>
+        <div id="player"></div>
+        <div class="AD" :class='{fade: ADPage === true}' v-if='ADPage === true' @click='showAD'>
+            <div class="AD_card" v-for='item,musicIndex in music' v-show='musicIndex === index'>
+                <div class="AD_card_img" :style="{backgroundImage: 'url(' + item.img + ')'}"></div>
+                <div class="AD_card_content">
+                    <h1>{{ item.song }}</h1>
+                    <p>{{ item.artist }}</p>
+                    <div>
+                        <div class="AD_card_btn">FOLLOW</div>
+                        <div class="AD_card_btn" @click='buyVip' v-show='VIP === false'>REMOVE AD</div>
+                    </div>
+                </div>
+                <p>No,thanks</p>
+            </div>
+        </div>
+        <div class="main" v-show='playList === false'>
+            <div class="main_top">
+                <div class="main_img" @click='displayLyric'>
+                    <div class="lyricsBox" :class='{fade: isLyric === true}' v-if='isLyric === true'>
+                        <p v-for='lyric,lyricIndex in lyrics' v-if='lyricIndex === index'>{{ lyric.lyrics }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="main_bottom">
+                <div class="main_filter"></div>
+                <div class="Player_information" v-for='item,musicIndex in music' v-if='musicIndex === index'
+                    @click='changePlayList'>
+                    <h1>{{ item.song }}</h1>
+                    <p>{{ item.artist }}</p>
+                </div>
+                <div class="player_time">
+                    <label for="timeBar" class="player_time_bar">
+                        <div class="time_bar_now"></div>
+                    </label>
+                    <input type="range" id="timeBar" @change='moveTimeBar' min="0" :max="durationTime"
+                        :value="currentTime">
+                    <p>{{ current }}</p>
+                    <p>{{ duration }}</p>
+                </div>
+                <div class="Player_control">
+                    <img alt="icons" v-if='isShuffle === false' src="./icons/btn_ShufflePlayback.svg" @click='shuffleControl'>
+                    <img alt="icons" v-if='isShuffle === true' src="./icons/btn_ShufflePlayback - 2.svg" @click='shuffleControl'>
+                    <img alt="icons" src="./icons/btn_Rewind.svg" @click='rewindSong'>
+                    <img alt="icons" v-if='isPlay === false' src="./icons/btn_Play.svg" @click='playSong'>
+                    <img alt="icons" v-if='isPlay === true' src="./icons/btn_pause.svg" @click='playSong'>
+                    <img alt="icons" src="./icons/btn_Fast.svg" @click='nextSong'>
+                    <img alt="icons" v-if='isLoop === 0' src="./icons/btn_RepeatAll.svg" @click='loopControl'>
+                    <img alt="icons" v-if='isLoop === 1' src="./icons/btn_RepeatAll - 2.svg" @click='loopControl'>
+                    <img alt="icons" v-if='isLoop === 2' src="./icons/btn_RepeatOne - 2.svg" @click='loopControl'>
+                </div>
+            </div>
+        </div>
+        <div class="main_playlist" :class='{slide: playList === true}' v-show='playList === true'>
+            <div class="playlist_control" v-for='item,musicIndex in music' v-if='musicIndex === index'>
+                <div class="control_img" :style="{backgroundImage: 'url(' + item.img + ')'}"></div>
+                <div class="control_text">
+                    <div>
+                        <p>{{ item.song }}</p>
+                        <p>{{ item.artist }}</p>
+                    </div>
+                    <div>
+                        <img alt="icons" v-if='isPlay === false || musicIndex !== index' src="./icons/btn_small_play.svg"
+                            @click='playSong'>
+                        <img alt="icons" v-if='musicIndex === index && isPlay === true' src="./icons/btn_small_pause.svg"
+                            @click='playSong'>
+                        <img alt="icons" src="./icons/btn_Fast - 2.svg" @click='nextSong'>
+                    </div>
+                </div>
+            </div>
+            <div class="playlist_top">
+                <i class="material-icons" style="cursor: pointer" @click='changePlayList'>
+                    arrow_back_ios
+                </i>
+                <div>PLAYLIST</div>
+                <i class="material-icons" style="font-size: 2rem; cursor: pointer" @click='showAD'>
+                    more_horiz
+                </i>
+                <div class="play_list_search">
+                    <input type="text" placeholder="NOT FIND ?" v-model='search'>
+                </div>
+            </div>
+            <div class="list_filter">
+                <div class="playlist_bottom" :class='{now_listBox: musicIndex === index}'
+                    v-for='item,musicIndex in music' @click='changeMusic(musicIndex)'
+                    v-show='item.song.toLowerCase().indexOf(search) !==-1'>
+                    <div class="listBox">
+                        <div>
+                            <p>{{ item.song }}</p>
+                            <p>{{ item.artist }}</p>
+                        </div>
+                        <img alt="icons" v-if='isPlay === false || musicIndex !== index' src="./icons/btn_small_play.svg"
+                            @click='playSong'>
+                        <img alt="icons" v-if='musicIndex === index && isPlay === true' src="./icons/btn_small_pause.svg"
+                            @click='playSong'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+    <script src="./all.js"></script>
+</body>
+
+</html>

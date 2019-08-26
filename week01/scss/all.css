@@ -1,0 +1,879 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 1280px;
+  min-height: 100vh;
+  text-transform: uppercase;
+  position: relative;
+  margin: 0 auto;
+}
+
+.content {
+  width: 65%;
+  background-color: #FFEDF7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 80px;
+}
+
+.content > h1 {
+  font-size: 11rem;
+  color: #FF4384;
+  margin-bottom: 110px;
+}
+
+.text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 48px 0 145px;
+  color: #FF4384;
+}
+
+.text input {
+  border: 0;
+  outline: none;
+  width: 400px;
+  height: 56px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 16px;
+  color: #FF4384;
+}
+
+.text input::-webkit-input-placeholder {
+  color: #FF4384;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text input:-ms-input-placeholder {
+  color: #FF4384;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text input::-ms-input-placeholder {
+  color: #FF4384;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text input::placeholder {
+  color: #FF4384;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text label {
+  width: 45px;
+  height: 56px;
+  background-color: #FFFFFF;
+  line-height: 56px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #FF4384;
+  font-size: 11rem;
+}
+
+.title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #003164;
+  font-size: 1.5rem;
+  height: 48px;
+}
+
+.title > div {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 2px solid #003164;
+  cursor: pointer;
+}
+
+.title > div:hover {
+  background-color: #003164;
+}
+
+.todo {
+  width: 445px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  color: #003164;
+}
+
+#more {
+  color: #FF4384;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.todoBox {
+  width: 100%;
+  height: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #003164;
+}
+
+.todoBox i {
+  cursor: pointer;
+}
+
+.todoBox > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.todoBox P {
+  cursor: pointer;
+}
+
+.boxCircle {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #003164;
+  border-radius: 50%;
+  margin-right: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+}
+
+.boxCircle:hover {
+  background-color: #003164;
+}
+
+.circle {
+  width: 540px;
+  height: 540px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 4px solid #FF4384;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  right: 180px;
+}
+
+.circle > div {
+  background-color: #FF4384;
+  width: 510px;
+  height: 510px;
+  border-radius: 50%;
+  position: absolute;
+  top: 11px;
+  right: 11px;
+}
+
+.circle > div > div {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  cursor: pointer;
+}
+
+.circle > div > div > div {
+  width: 15px;
+  height: 15px;
+  background-color: #FFFFFF;
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+}
+
+.circle i {
+  font-size: 4.5rem;
+  color: #FF4384;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.circleActive {
+  width: 540px;
+  height: 540px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 4px solid #FF4384;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  right: 180px;
+}
+
+.circleActive > div {
+  background-color: #FFFFFF;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 4px solid #FF4384;
+  width: 510px;
+  height: 510px;
+  border-radius: 50%;
+  position: absolute;
+  top: 11px;
+  right: 11px;
+}
+
+.circleActive > div > div {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: #FF4384;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  cursor: pointer;
+}
+
+.circleActive > div > div > div {
+  width: 15px;
+  height: 15px;
+  background-color: #FF4384;
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+}
+
+.circleActive i {
+  font-size: 4.5rem;
+  color: #FFFFFF;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.circleB {
+  width: 540px;
+  height: 540px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 4px solid #00A7FF;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  right: 180px;
+}
+
+.circleB > div {
+  background-color: #00A7FF;
+  width: 510px;
+  height: 510px;
+  border-radius: 50%;
+  position: absolute;
+  top: 11px;
+  right: 11px;
+}
+
+.circleB > div > div {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  cursor: pointer;
+}
+
+.circleB > div > div > div {
+  width: 15px;
+  height: 15px;
+  background-color: #FFFFFF;
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+}
+
+.circleB i {
+  font-size: 4.5rem;
+  color: #00A7FF;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.circleBActive {
+  width: 540px;
+  height: 540px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 4px solid #00A7FF;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  right: 180px;
+}
+
+.circleBActive > div {
+  background-color: #FFFFFF;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 4px solid #00A7FF;
+  width: 510px;
+  height: 510px;
+  border-radius: 50%;
+  position: absolute;
+  top: 11px;
+  right: 11px;
+}
+
+.circleBActive > div > div {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: #00A7FF;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  cursor: pointer;
+}
+
+.circleBActive > div > div > div {
+  width: 15px;
+  height: 15px;
+  background-color: #00A7FF;
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+}
+
+.circleBActive i {
+  font-size: 4.5rem;
+  color: #FFFFFF;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.blue {
+  width: 35%;
+  background-color: #003164;
+  text-align: right;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-right: 85px;
+  color: #FFFFFF;
+}
+
+.blue ul {
+  list-style: none;
+}
+
+.blue li {
+  margin-top: 48px;
+}
+
+.blue i {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.blue p {
+  font-size: 1.5rem;
+  margin-top: 335px;
+  margin-left: 334px;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+}
+
+.main2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 1280px;
+  min-height: 100vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 45px 85px 0;
+  background-color: #003164;
+  margin: 0 auto;
+  text-transform: uppercase;
+  display: none;
+}
+
+.main2 > div:nth-of-type(1) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.list {
+  font-size: 2.25rem;
+  color: #587da3;
+}
+
+.list ul {
+  list-style: none;
+}
+
+.list li {
+  margin-bottom: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.list li:hover {
+  color: #FF4384;
+}
+
+.list i {
+  margin-right: 8px;
+  font-size: 2.25rem;
+}
+
+.playTodo {
+  width: 350px;
+  height: 175px;
+  background-color: #FFEDF7;
+  border-radius: 180px 180px 0 0;
+  position: relative;
+  text-align: center;
+}
+
+.playTodo h1 {
+  color: #FF4384;
+  font-size: 4rem;
+  margin-top: 57px;
+}
+
+.playTodo p {
+  color: #003164;
+}
+
+.circleS {
+  width: 114px;
+  height: 114px;
+  border-radius: 50%;
+  background-color: #003164;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+
+.circleS > div {
+  width: 96px;
+  height: 96px;
+  border: 2px solid #FF4384;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  cursor: pointer;
+}
+
+.circleS > div > div {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background-color: #FF4384;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+}
+
+.circleS > div i {
+  color: #FFFFFF;
+  font-size: 4rem;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.todoList {
+  margin: 0 0 48px 125px;
+}
+
+.analytics {
+  margin: 0 0 48px 125px;
+}
+
+.analyticsBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.useTime {
+  width: 50%;
+  color: #FFFFFF;
+}
+
+.useTime > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.useTime > div > p:first-child {
+  font-size: 4rem;
+  color: #FF4384;
+  margin-bottom: 46px;
+}
+
+.useTime > div > p:last-child {
+  margin-bottom: 60px;
+}
+
+.chart {
+  width: 445px;
+  height: 280px;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.chartY {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-right: 6px;
+}
+
+.chartContent {
+  width: 419px;
+  height: 100%;
+  border-left: 1px solid #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.chartContent > div {
+  width: 30px;
+  background-color: #FFFFFF;
+}
+
+.chartContent > div:nth-of-type(1), .chartContent > div:nth-of-type(3) {
+  height: 60%;
+}
+
+.chartContent > div:nth-of-type(2), .chartContent > div:nth-of-type(5) {
+  height: 45%;
+}
+
+.chartContent > div:nth-of-type(4) {
+  height: 30%;
+}
+
+.chartContent > div:nth-of-type(6) {
+  height: 10%;
+}
+
+.chartContent > div:nth-of-type(7) {
+  height: 75%;
+  background-color: #FF4384;
+}
+
+.chartX {
+  width: 419px;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 16.5px;
+}
+
+.music {
+  margin: 0 0 48px 125px;
+}
+
+.musicBoxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 48px;
+  color: #FFFFFF;
+}
+
+.musicBoxes input {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.musicBox {
+  width: 50;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.listTop {
+  width: 445px;
+  height: 44px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  padding: 0 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #587da3;
+  line-height: 44px;
+  margin-bottom: 19px;
+}
+
+.listTop > P:last-child {
+  font-size: 1rem;
+}
+
+.todoBox2 {
+  width: 100%;
+  height: 32px;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.todoBox2 > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.todoBox2 i {
+  cursor: pointer;
+}
+
+.todoBox2 p {
+  cursor: pointer;
+}
+
+.boxCircle2 {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  margin-right: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+}
+
+.boxCircle2:hover {
+  background-color: #FFFFFF;
+}
+
+.text2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 48px;
+}
+
+.text2 input {
+  border: 0;
+  outline: none;
+  width: 400px;
+  height: 56px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 16px;
+  color: #FF4384;
+}
+
+.text2 input::-webkit-input-placeholder {
+  color: #FF4384;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text2 input:-ms-input-placeholder {
+  color: #FF4384;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text2 input::-ms-input-placeholder {
+  color: #FF4384;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text2 input::placeholder {
+  color: #FF4384;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text2 label {
+  width: 45px;
+  height: 56px;
+  background-color: #FFFFFF;
+  line-height: 56px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.text2 i {
+  color: #FF4384;
+}
+
+.slide {
+  width: 48px;
+  margin-left: 142px;
+  color: #FFFFFF;
+  font-size: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.slide i {
+  cursor: pointer;
+}
+
+.slide p {
+  font-size: 1.5rem;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+  margin-bottom: 48px;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.active {
+  color: #FF4384;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+/*# sourceMappingURL=all.css.map */

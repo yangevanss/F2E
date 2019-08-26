@@ -1,0 +1,360 @@
+$normalWhite: #FFFFFF;
+$normalGray: #413D3D;
+$lightGray: #DEDEDE;
+$shadowGray: #595959;
+$shadowBoxGray: #262626;
+$textGray: #BBBBBB;
+$lightTextGray: #DBDBDB;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+}
+::-webkit-scrollbar {
+    display:none
+}
+#player {
+    position: fixed;
+}
+.main {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    padding-top: 9.35vh;
+}
+.main_img{
+    width: 87vw;
+    max-width: 450px;
+    height: 55vh;
+    border: 10px solid $normalWhite;
+    margin: auto;
+    position: relative;
+    overflow: auto;
+    cursor: pointer;
+    z-index: 1;
+}
+.lyricsBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    padding: 3.7vh 22%;
+    color: $shadowGray;
+    line-height: 60px;
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100%;
+        background-color: $normalWhite;
+        opacity: 0.85;
+        filter: blur(10px);
+        z-index: -1;
+    }
+}
+.main_bottom{
+    width: 100vw;
+    height: 35.6vh;
+    text-align: center;
+    margin: auto;
+    padding-top: 6.77vh;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    color: $normalGray;
+
+}
+.main_filter {
+    position: absolute;
+    top: 50px;
+    left: -1000px;
+    right: -1000px;
+    bottom: -1000px;
+    background-color: rgba(255, 255, 255, 0.85);
+    filter: blur(20px);
+    z-index: -1;
+}
+.Player_information {
+    cursor: pointer;
+    h1 {
+        font-size: 1.375rem;
+    }
+}
+.player_time {
+    width: 87vw;
+    max-width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 3.2vh auto 1.2vh;
+    p {
+        margin-top: 0.985vh;
+        font-size: 0.625rem;
+    }
+}
+.player_time_bar {
+    width: 100%;
+    border: 1px solid $lightGray;
+    cursor: pointer;
+    position: relative;
+    top: 0.5px;
+}
+input{
+    -webkit-appearance: none;
+    border-radius: 10px;
+    width: 100%;
+    height: 0;
+    outline: none;
+    position: relative;
+    &::before{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        top: -5px;
+        left: 0;
+    }
+}    
+input[type=range]::-webkit-slider-thumb {
+    position: relative;
+    -webkit-appearance: none;
+    height: 6px;
+    width: 6px;
+    top: -0.5px;
+    left: 1px;
+    background: $normalGray; 
+    border-radius: 50%; 
+}
+.time_bar_now {
+    position: absolute;
+    top: -0.5px;
+    border: 1px solid $normalGray;
+}
+.Player_control {
+    width: 87vw;
+    max-width: 450px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    >img {
+        cursor: pointer;
+    }
+}
+.main_playlist {
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url('../picture/8C9Evy.png');
+    background-size: cover;
+    background-position: center;
+    padding: 5.41vh 0 70px;
+    overflow: hidden;
+}
+.list_filter {
+    width: 100vw;
+    position: relative;
+    z-index: 1;
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: -1000px;
+        right: -1000px;
+        bottom: -1000px;
+        background-color: rgba(255, 255, 255, 0.9);
+        filter: blur(50px);
+        z-index: -1;
+    }
+}
+.playlist_top {
+    width: 100vw;
+    max-width: 450px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: $normalWhite;
+    font-size: 1.75rem;
+    text-shadow: 0 0 8px $shadowGray;
+    margin: auto;
+}
+.playlist_bottom {
+    width: 100vw;
+    max-width: 450px;
+    color: $normalGray;
+    margin: auto;
+}
+.play_list_search {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3.7vh;
+    input{
+        width: 84%;
+        height: 100%;
+        max-width: 450px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: $normalGray;
+        &::placeholder{
+            text-align: right;
+            text-decoration: underline;
+            color: $normalGray;
+        }
+    }
+}
+.listBox {
+    width: 84%;
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $lightGray;
+    color: $textGray;
+    margin: auto;
+    cursor: pointer;
+    P:nth-of-type(1){
+        font-size: 1.125rem;
+    }
+    P:nth-of-type(2){
+        font-size: 0.875rem;
+        color: $lightTextGray;
+        font-weight: normal;
+    }
+}
+
+.now_listBox {
+    background-color: $normalWhite;
+    box-shadow: 0 0 8px $textGray;
+    transform: scale(1.05);
+    border: none;
+    P:nth-of-type(1){
+        color: $normalGray;
+        font-size: 1.125rem;
+    }
+    P:nth-of-type(2){
+        font-weight: bold;
+    }
+}
+.AD {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(65, 61, 61, 0.8);
+    color: $normalGray;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.AD_card {
+    width: 87.2%;
+    max-width: 450px;
+    height: 55%;
+    >p {
+        width: 100px;
+        margin: 15px auto 0;
+        color: $normalWhite;
+        text-align: center;
+        text-decoration-line: underline;
+        cursor: pointer;
+    }
+}
+.AD_card_img {
+    width: 100%;
+    height: 64%;
+    background-size: cover;
+    background-position: center;
+}
+.AD_card_content {
+    width: 100%;
+    height: 36%;
+    background-color: $normalWhite;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    h1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 95%;
+        font-size: 1.375rem;
+    }
+    >div {
+        width: 100%;
+        height: 31%;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+.AD_card_btn {
+    width: 43%;
+    height: 100%;
+    background-color: $normalGray;
+    color: $normalWhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    margin-top: 15px;
+    cursor: pointer;
+    &:hover {
+        background-color: $shadowGray;
+    }
+}
+.playlist_control {
+    width: 100vw;
+    max-width: 450px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    background-color: $lightGray;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+.control_img {
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    background-position: center;
+}
+.control_text {
+    display: flex;
+    width: 81.333vw;
+    max-width: 380px;
+    justify-content: space-between;
+    padding: 0 5px 0 20px;
+    align-items: center;
+    p:nth-of-type(2) {
+        font-size: 0.875rem;
+    }
+}
+.fade {
+    animation: fade .5s;
+}
+.slide {
+    animation: slide .5s;
+}
+@keyframes fade {
+    0%{opacity: 0}
+    100%{opacity: 1}
+}
+@keyframes slide {
+    0%{transform: translateY(100%)}
+    100%{transform: translateY(0%)}
+}

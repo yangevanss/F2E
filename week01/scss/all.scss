@@ -1,0 +1,628 @@
+$lightPink : #FFEDF7;
+$darkPink : #FF4384;
+$darkBlue : #003164;
+$lightBlue : #E5F3FF;
+$normalBlue : #00A7FF;
+$normalWhite : #FFFFFF;
+* {
+    margin: 0;
+    padding: 0;
+}
+.main {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    display: flex;
+    width: 1280px;
+    min-height: 100vh;
+    text-transform: uppercase;
+    position: relative;
+    margin: 0 auto;
+    // display: none;
+}
+.content {
+    width: 65%;
+    background-color: $lightPink;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 80px;
+    >h1{
+        font-size: 11rem;
+        color: $darkPink;
+        margin-bottom: 110px;
+    }
+}
+.text {
+    display: flex;
+    margin: 48px 0 145px;
+    color: $darkPink;
+    input {
+        border: 0;
+        outline: none;
+        width: 400px;
+        height: 56px;
+        box-sizing: border-box;
+        padding-left: 16px;
+        color: $darkPink;
+        &::placeholder {
+            color: $darkPink;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    label {
+        width: 45px;
+        height: 56px;
+        background-color: $normalWhite;
+        line-height: 56px;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+.time {
+    display: flex;
+    color: $darkPink;
+    font-size: 11rem;
+}
+.title {
+    display: flex;
+    color: $darkBlue;
+    font-size: 1.5rem;
+    height: 48px;
+    >div {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-right: 16px;
+        box-sizing: border-box;
+        border: 2px solid $darkBlue;
+        cursor: pointer;
+    }
+    >div:hover {
+        background-color: $darkBlue;
+    }
+}
+.todo {
+    width: 445px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: $darkBlue;
+}
+#more {
+    color: $darkPink;
+    text-decoration: none;
+    cursor: pointer;
+}
+.todoBox {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    border-bottom: 1px solid $darkBlue;
+    i {
+        cursor: pointer;
+    }
+    >div {
+        display: flex;
+        align-items: center;
+    }
+    P {
+        cursor: pointer;
+    }
+}
+.boxCircle {
+    width: 24px;
+    height: 24px;
+    border: 2px solid $darkBlue;
+    border-radius: 50%;
+    margin-right: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.boxCircle:hover {
+    background-color: $darkBlue;
+}
+.circle {
+    width: 540px;
+    height: 540px;
+    box-sizing: border-box;
+    border: 4px solid $darkPink;
+    border-radius: 50%;
+    position: absolute;
+    top: 15%;
+    right: 180px;
+    >div {
+        background-color: $darkPink;
+        width: 510px;
+        height: 510px;
+        border-radius: 50%;
+        position: absolute;
+        top: 11px;
+        right: 11px;
+        >div {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background-color: $normalWhite;
+            text-align: center;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            cursor: pointer;
+            >div {
+                width: 15px;
+                height: 15px;
+                background-color: $normalWhite;
+                position: absolute;
+                bottom: 0;
+                right: -15px;
+            }
+        }
+    }
+    i {
+        font-size: 4.5rem;
+        color: $darkPink;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+    }
+}
+.circleActive {
+    width: 540px;
+    height: 540px;
+    box-sizing: border-box;
+    border: 4px solid $darkPink;
+    border-radius: 50%;
+    position: absolute;
+    top: 15%;
+    right: 180px;
+    >div {
+        background-color: $normalWhite;
+        box-sizing: border-box;
+        border: 4px solid $darkPink;
+        width: 510px;
+        height: 510px;
+        border-radius: 50%;
+        position: absolute;
+        top: 11px;
+        right: 11px;
+        >div {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background-color: $darkPink;
+            text-align: center;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            cursor: pointer;
+            >div {
+                width: 15px;
+                height: 15px;
+                background-color: $darkPink;
+                position: absolute;
+                bottom: 0;
+                right: -15px;
+            }
+        }
+    }
+    i {
+        font-size: 4.5rem;
+        color: $normalWhite;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+    }
+}
+.circleB {
+    width: 540px;
+    height: 540px;
+    box-sizing: border-box;
+    border: 4px solid $normalBlue;
+    border-radius: 50%;
+    position: absolute;
+    top: 15%;
+    right: 180px;
+    >div {
+        background-color: $normalBlue;
+        width: 510px;
+        height: 510px;
+        border-radius: 50%;
+        position: absolute;
+        top: 11px;
+        right: 11px;
+        >div {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background-color: $normalWhite;
+            text-align: center;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            cursor: pointer;
+            >div {
+                width: 15px;
+                height: 15px;
+                background-color: $normalWhite;
+                position: absolute;
+                bottom: 0;
+                right: -15px;
+            }
+        }
+    }
+    i {
+        font-size: 4.5rem;
+        color: $normalBlue;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+    }
+}
+.circleBActive {
+    width: 540px;
+    height: 540px;
+    box-sizing: border-box;
+    border: 4px solid $normalBlue;
+    border-radius: 50%;
+    position: absolute;
+    top: 15%;
+    right: 180px;
+    >div {
+        background-color: $normalWhite;
+        box-sizing: border-box;
+        border: 4px solid $normalBlue;
+        width: 510px;
+        height: 510px;
+        border-radius: 50%;
+        position: absolute;
+        top: 11px;
+        right: 11px;
+        >div {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background-color: $normalBlue;
+            text-align: center;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            cursor: pointer;
+            >div {
+                width: 15px;
+                height: 15px;
+                background-color: $normalBlue;
+                position: absolute;
+                bottom: 0;
+                right: -15px;
+            }
+        }
+    }
+    i {
+        font-size: 4.5rem;
+        color: $normalWhite;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+    }
+}
+.blue {
+    width: 35%;
+    background-color: $darkBlue;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 85px;
+    color: $normalWhite;
+    ul {
+        list-style: none;
+    }
+    li {
+        margin-top: 48px;
+    }
+    i {
+        font-size: 2.5rem;
+        cursor: pointer;
+    }
+    p {
+        font-size: 1.5rem;
+        margin-top: 335px;
+        margin-left: 334px;
+        writing-mode: vertical-rl;
+    }
+}
+.main2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    display: flex;
+    width: 1280px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 45px 85px 0;
+    background-color: $darkBlue;
+    margin: 0 auto;
+    text-transform: uppercase;
+    >div:nth-of-type(1) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    display: none;
+}
+.list {
+    font-size: 2.25rem;
+    color: #587da3;
+    ul {
+        list-style: none;
+    }
+    li {
+        margin-bottom: 45px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+            color: $darkPink;
+        }
+    }
+    i {
+        margin-right: 8px;
+        font-size: 2.25rem;
+    }
+}
+.playTodo {
+    width: 350px;
+    height: 175px;
+    background-color: $lightPink;
+    border-radius: 180px 180px 0 0;
+    position: relative;
+    text-align: center;
+    h1 {
+        color: $darkPink;
+        font-size: 4rem;
+        margin-top: 57px;
+    }
+    p {
+        color: $darkBlue;
+    }
+}
+.circleS {
+    width: 114px;
+    height: 114px;
+    border-radius: 50%;
+    background-color: $darkBlue;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    >div {
+        width: 96px;
+        height: 96px;
+        border: 2px solid $darkPink;
+        border-radius: 50%;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        cursor: pointer;
+        >div {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            background-color: $darkPink;
+            position: absolute;
+            top: 7px;
+            left: 7px;
+        }
+        i {
+            color: $normalWhite;
+            font-size: 4rem;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    }
+}
+.todoList {
+    margin: 0 0 48px 125px;
+}
+.analytics {
+    margin: 0 0 48px 125px;
+}
+.analyticsBox {
+    display: flex;
+}
+.useTime {
+    width: 50%;
+    color: $normalWhite;
+    >div {
+        display: flex;
+        align-items: flex-end;
+        >p:first-child {
+            font-size: 4rem;
+            color: $darkPink;
+            margin-bottom: 46px;
+        }
+        >p:last-child {
+            margin-bottom: 60px;
+        }
+    }
+}
+.chart {
+    width: 445px;
+    height: 280px;
+    color: $normalWhite;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.chartY {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 6px;
+}
+.chartContent {
+    width: 419px;
+    height: 100%;
+    border-left: 1px solid $normalWhite;
+    border-bottom: 1px solid $normalWhite;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    >div {
+        width: 30px;
+        background-color: $normalWhite;
+    }
+    >div:nth-of-type(1), >div:nth-of-type(3){
+        height: 60%;
+    }
+    >div:nth-of-type(2), >div:nth-of-type(5){
+        height: 45%;
+    }
+    >div:nth-of-type(4) {
+        height: 30%;
+    }
+    >div:nth-of-type(6) {
+        height: 10%;
+    }
+    >div:nth-of-type(7) {
+        height: 75%;
+        background-color: $darkPink;
+    }
+}
+.chartX {
+    width: 419px;
+    height: 20px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 16.5px;
+}
+.music {
+    margin: 0 0 48px 125px;
+}
+.musicBoxes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    color: $normalWhite;
+    input {
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+        cursor: pointer;
+    } 
+}
+.musicBox {
+    width: 50;
+    display: flex;
+    align-items: center;
+}
+.listTop {
+    width: 445px;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    color: $normalWhite;
+    font-size: 1.5rem;
+    padding: 0 16px;
+    box-sizing: border-box;
+    background-color: #587da3;
+    line-height: 44px;
+    margin-bottom: 19px;
+    >P:last-child {
+        font-size: 1rem;
+    }
+}
+.todoBox2 {
+    width: 100%;
+    height: 32px;
+    color: $normalWhite;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    border-bottom: 1px solid $normalWhite;
+    >div {
+        display: flex;
+        align-items: center;
+    }
+    i {
+        cursor: pointer;
+    }
+    p {
+        cursor: pointer;
+    }
+}
+.boxCircle2 {
+    width: 24px;
+    height: 24px;
+    border: 2px solid $normalWhite;
+    border-radius: 50%;
+    margin-right: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.boxCircle2:hover {
+    background-color: $normalWhite;
+}
+.text2 {
+    display: flex;
+    margin-bottom: 48px;
+    input {
+        border: 0;
+        outline: none;
+        width: 400px;
+        height: 56px;
+        box-sizing: border-box;
+        padding-left: 16px;
+        color: $darkPink;
+        &::placeholder {
+            color: $darkPink;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    label {
+        width: 45px;
+        height: 56px;
+        background-color: $normalWhite;
+        line-height: 56px;
+        text-align: center;
+        cursor: pointer;
+    }
+    i {
+        color: $darkPink;
+    }
+}
+.slide {
+    width: 48px;
+    margin-left: 142px;
+    color: $normalWhite;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    i {
+        cursor: pointer;
+    }
+    p {
+        font-size: 1.5rem;
+        writing-mode: vertical-lr;
+        margin-bottom: 48px;
+    }
+}
+.done {
+    text-decoration: line-through;
+}
+.active {
+    color: $darkPink;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s;
+}
