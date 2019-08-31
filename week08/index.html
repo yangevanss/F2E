@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css' />
+    <link rel="stylesheet" href="./all.css">
+    <title>Cloud</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if='open === 1'>
+            <header class="header">
+                <div>
+                    <div @click='backRoot' class="logo">
+                        <img src="./picture/Sea.svg" alt="logo" width="28">
+                        <h1>SEA DRIVE</h1>
+                    </div>
+                    <span class="user_name">NL</span>
+                </div>
+            </header>
+            <main class="main">
+                <div class="main_name">
+                    <div>
+                        <p>NAME</p>
+                        <img src="./picture/Up.svg" alt="pic" width="11">
+                    </div>
+                    <div>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="storage">
+                    <div class="folder" v-for='(item, index) in folder'>
+                        <div @click='inside(index)'>
+                            <img src="./picture/folder.svg" alt="pic" width="26">
+                            <div>
+                                <h4>{{ item.location.path_ }}</h4>
+                                <p>Update 2019/08/08</p>
+                            </div>
+                        </div>
+                        <div class="folder_tool">
+                            <i class="fas fa-ellipsis-h" v-if='!tool' @click='openTool'></i>
+                            <div v-if='tool'>
+                                <p @click='downloadFolder(index)'>Download</p>
+                                <p @click='deleteFolder(index)'>Delete</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="files" v-for='(item, index) in files'>
+                        <div>
+                            <img src="./picture/folder.svg" alt="pic" width="26">
+                            <div>
+                                <h4>{{ item.location.path_ }}</h4>
+                                <p>Update 2019/08/08</p>
+                            </div>
+                        </div>
+                        <div class="folder_tool">
+                            <i class="fas fa-ellipsis-h" v-if='!tool' @click='openTool'></i>
+                            <div v-if='tool'>
+                                <p @click='downloadFiles(index)'>Download</p>
+                                <p @click='deleteFiles(index)'>Delete</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <div class="footer_btn" @click='chooseMethod'>
+                    <i class="fas fa-plus"></i>
+                </div>
+            </footer>
+        </div>
+        <div class="choose_method slide_up" v-if='open === 2'>
+            <div>
+                <p>NEW</p>
+                <div class="methods">
+                    <label class="upload_folder">
+                        <input type="file" webkitdirectory @change='uploadFolder'>
+                        <div>
+                            <img src="./picture/folder.svg" alt="pic" width="25">
+                            <img src="./picture/Sea.svg" alt="pic" width="40">
+                        </div>
+                        <div>FOLDER</div>
+                    </label>
+                    <label class="upload_files">
+                        <input type="file" multiple @change='uploadFile'>
+                        <div>
+                            <img src="./picture/Up2.svg" alt="pic" width="25">
+                            <img src="./picture/Sea.svg" alt="pic" width="40">
+                        </div>
+                        <div>FILE</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="loading" v-if='open === 3'>
+            <div>
+                <div class="uploading">
+                    <div>
+                        <img src="./picture/Up2.svg" alt="pic">
+                        <img src="./picture/Sea.svg" alt="pic">
+                    </div>
+                    <progress :value="load"></progress>
+                    <p>UPLOADING</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-storage.js"></script>
+    <script src="./all.js"></script>
+</body>
+
+</html>
