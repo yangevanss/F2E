@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 body {
     font-family: 'Roboto', sans-serif;
 }
@@ -17,6 +20,11 @@ progress[value]::-webkit-progress-bar {
 progress[value]::-webkit-progress-value {
     border-radius: 50px;
     background-image: repeating-linear-gradient(-50deg ,#224280 0px, #224280 7px, #FFF 7px, #FFF 10px);
+}
+#app {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 .logo {
     cursor: pointer;
@@ -184,9 +192,9 @@ progress[value]::-webkit-progress-value {
     color: #224280;
     font-weight: bold;
     font-size: 0.875rem;
-    width: 80%;
-    height: 15px;
-    overflow: hidden;
+    max-width: 200px;
+    max-height: 35px;
+    overflow: auto;
     text-overflow: ellipsis;
 }
 .folder p, .files p {
@@ -212,17 +220,17 @@ progress[value]::-webkit-progress-value {
 .folder_tool > div {
     position: absolute;
     top: 1px;
-    left: 0;
-    width: 200%;
+    left: -10px;
+    width: 230%;
     height: 95%;
     background-color: #FFF;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 .folder_tool p {
     opacity: 1;
-    margin-bottom: 5px;
 }
 .folder_tool p:hover {
     background-color: #224280;

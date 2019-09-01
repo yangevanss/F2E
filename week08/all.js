@@ -20,8 +20,7 @@
             tool: false,
             open: 1,
             load: 0,
-            tempFiles: [],
-            tempFolder: []
+            tempPath: null,
         },
         mounted() {
             let storageReference = firebase.storage().ref();
@@ -40,10 +39,12 @@
             },
             uploadFile(e) {
                 let file = e.target.files;
+                let path;
                 for (let i = 0; i < file.length; i++) {
                     this.open = 3;
                     let fileName = file[i].name;
-                    let storageReference = firebase.storage().ref(fileName);
+                    !this.tempPath ? path = fileName : path = `/${this.tempPath}/${fileName}`;
+                    let storageReference = firebase.storage().ref(path);
                     let task = storageReference.put(file[i]);
 
                     task.on('state_changed', (snapshot) => {
@@ -53,17 +54,18 @@
                         console.log(err)
                     }, (success) => {
                         this.open = 1;
-                        window.location.reload();
+                        this.backRoot();
                     })
                 }
             },
             uploadFolder(e) {
-                console.log(e)
                 let file = e.target.files;
+                let path;
                 for (let i = 0; i < file.length; i++) {
                     this.open = 3;
                     let fileName = file[i].webkitRelativePath;
-                    let storageReference = firebase.storage().ref(fileName);
+                    !this.tempPath ? path = fileName : path = `/${this.tempPath}/${fileName}`;
+                    let storageReference = firebase.storage().ref(path);
                     let task = storageReference.put(file[i]);
 
                     task.on('state_changed', (snapshot) => {
@@ -72,7 +74,7 @@
                         console.log(err)
                     }, (success) => {
                         this.open = 1;
-                        window.location.reload();
+                        this.backRoot();
                     })
                 }
             },
@@ -81,7 +83,7 @@
                 // console.log(this.files[index].location.path_);
                 let storageReference = firebase.storage().ref(path);
                 storageReference.delete().then(() => {
-                    window.location.reload();
+                    this.backRoot();
                 });
             },
             downloadFiles(index) {
@@ -107,47 +109,35 @@
                     })
                 })
             },
-            deleteFolder(index, folderLocation) {
-                let folderPath = folderLocation ||　this.folder[index].location.path_;
-                let storageReference = firebase.storage().ref(folderPath);
-                storageReference.listAll().then(res => {
-                    this.tempFiles = res.items;
-                    this.tempFolder = res.prefixes;
-                    // console.log(folder);
-                })
-                .then(() => {
-                    this.deleteLoop(this.tempFiles);
-                }).then(() => {
-                    //如果裡面還有資料夾
-                    if (this.tempFolder.length !== 0) {
-                        this.deleteFolder('', this.tempFolder[0].location.path_);
-                    } else {
-                        window.location.reload();
+            deleteFolder(index, temp) {
+                let tempFiles = [];
+                let tempFolder = [];
+                let folder = temp || this.folder[index].location.path_;
+                let folderPath =  firebase.storage().ref(folder);
+                folderPath.listAll().then(res=>{
+                    tempFiles = res.items;
+                    tempFolder = res.prefixes;
+                }).then(()=>{
+                    tempFiles.forEach(item=>{
+                        firebase.storage().ref(item.location.path_).delete();
+                    });
+                    if(tempFolder.length !== 0){
+                        tempFolder.forEach(item=>{
+                            this.deleteFolder('', item.location.path_);
+                        })
                     }
+                }).then(()=>{
+                    this.backRoot();
                 })
             },
-            deleteLoop(file){
-                file.forEach(item => {
-                    let target = firebase.storage().ref(item.location.path_);
-                    target.delete();
-                })
-            },
-            downloadFolder(index, folderLocation) {
-                //目標資料夾
-                let folderPath = folderLocation || this.folder[index].location.path_;
-                let storageReference = firebase.storage().ref(folderPath);
-                //找目標資料夾裡面的內容物
-                storageReference.listAll().then(res => {
-                    this.tempFiles = res.items;
-                    this.tempFolder = res.prefixes;
-                }).then(() => {
-                    //迴圈內容物下載
-                    this.downloadLoop(this.tempFiles);
-                })
-                .then(() => {
-                    if (this.tempFolder.length !== 0) {
-                        this.downloadFolder('', this.tempFolder[0].location.path_);
-                    }
+            downloadFolder(index) {
+                let tempFiles = [];
+                let path = this.folder[index].location.path_;
+                let folderPath = firebase.storage().ref(path);
+                folderPath.listAll().then(res=>{
+                    tempFiles = res.items;
+                }).then(()=>{
+                    this.downloadLoop(tempFiles);
                 })
             },
             downloadLoop(file) {
@@ -179,6 +169,7 @@
                 insidePath.listAll().then(res => {
                     this.folder = res.prefixes;
                     this.files = res.items;
+                    this.tempPath = folderPath;
                 })
             },
             backRoot() {
@@ -186,6 +177,7 @@
                 insidePath.listAll().then(res => {
                     this.folder = res.prefixes;
                     this.files = res.items;
+                    this.tempPath = null;
                 })
             }
         }
