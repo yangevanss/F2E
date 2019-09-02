@@ -119,15 +119,15 @@
                     tempFolder = res.prefixes;
                 }).then(()=>{
                     tempFiles.forEach(item=>{
-                        firebase.storage().ref(item.location.path_).delete();
+                        firebase.storage().ref(item.location.path_).delete().then(()=>{
+                            this.backRoot();
+                        });
                     });
                     if(tempFolder.length !== 0){
                         tempFolder.forEach(item=>{
                             this.deleteFolder('', item.location.path_);
                         })
                     }
-                }).then(()=>{
-                    this.backRoot();
                 })
             },
             downloadFolder(index) {
