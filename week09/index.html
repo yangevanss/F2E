@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <aside class="side_box" :class='{dark_bg: darkMode}'>
+            <div class="box_top">
+                <button @click='createNote'>New</button>
+                <div @click='changeMode'>
+                    <img src="./pic/invert_colors_gray.svg" alt="light" v-if='!darkMode'>
+                    <img src="./pic/invert_colors.svg" alt="light" v-if='darkMode'>
+                </div>
+            </div>
+            <div class="box_content">
+                <div class="star" @click='showFavorite'>
+                    <p>INBOX</p>
+                    <img src="./pic/star_border.svg" alt="star" v-if='!favorite'>
+                    <img src="./pic/star.svg" alt="star" v-if='favorite'>
+                </div>
+                <div 
+                class="note_box" 
+                :class='{checked: noteIndex === index}'
+                v-for='(note, noteIndex) in note'
+                @click='selectNote(noteIndex)'
+                v-show='(favorite && note.star) || !favorite'
+                >
+                    <div>
+                        <h1>{{ note.title }}</h1>
+                        <div @click='addFavorite(noteIndex)'>
+                            <img src="./pic/star.svg" alt="star" v-if='note.star'>
+                            <img src="./pic/star_border.svg" alt="star" v-if='!note.star'>
+                        </div>
+                    </div>
+                    <!-- <p>2 min ago</p> -->
+                </div>
+            </div>
+        </aside>
+        <div :class='{dark_bg: darkMode}'>
+            <textarea
+            v-for='(note, noteIndex) in note'
+            v-show='index === noteIndex'
+            :id= note.id
+            ></textarea>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+    <script src="./all.js"></script>
+</body>
+</html>
