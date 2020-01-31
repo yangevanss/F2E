@@ -1,139 +1,131 @@
-let player;
-let vm;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'VtOdSAxCufY',
-        events: {
-            'onStateChange': vm.onPlayerStateChange
-        }
-    });
-}
-; (function (Vue) {
-    vm = new Vue({
+(function (Vue) {
+    let vm = new Vue({
         el: '#app',
         data: {
+            index: 0,
             music: [
-                { id: 'VtOdSAxCufY', artist: 'TaeYeon', song: 'U R', img: './picture/57b7760782cf54e37bf2317906e57bf5.jpg' },
-                { id: 'UUb4glO7Ggs', artist: 'TaeYeon', song: 'Four Seasons', img: './picture/KHS_1887_TY_shop1_110904.jpg' },
-                { id: 'QZ0Atp720dM', artist: 'TaeYeon', song: 'All About You', img: './picture/papers.co-hq74-taeyeon-girl-kpop-bw-dark-36-3840x2400-4k-wallpaper.jpg' },
-                { id: 'rgXIpzHvD-g', artist: 'TaeYeon', song: 'Circus', img: './picture/papers.co-hq60-taeyeon-girl-snsd-black-dark-36-3840x2400-4k-wallpaper.jpg' },
-                { id: 'GhvRt0SWyEM', artist: 'TaeYeon', song: 'Time Walking On Memories', img: './picture/C6aO0mlUwAAK38n.jpg' },
-                { id: 'bHq8ayg_5OM', artist: 'TaeYeon', song: 'Rain', img: './picture/C8dftlJXcAA1njJ.jpg' },
-                { id: 'xgvi8FHEvIk', artist: 'TaeYeon', song: '11:11', img: './picture/taeyeon1.jpg' },
-                { id: 'Ogx32-flZKo', artist: 'TaeYeon', song: 'This Christmas', img: './picture/0e9d501db42366a5058d660952936712.jpg' },
+                { artist: 'Kevin MacLeod', name: 'Bright_Wish', src: './music/Bright_Wish.mp3', imgSrc: './picture/8C9Evy.png' },
+                { artist: 'Kevin MacLeod', name: 'Carny_s_Dance', src: './music/Carny_s_Dance.mp3', imgSrc: './picture/mZdA12.png' },
+                { artist: 'Riot', name: 'A_Long_Cold_Sting', src: './music/A_Long_Cold_Sting.mp3', imgSrc: 'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80' },
+                { artist: 'John Deley and the 41 Players', name: 'Almost_a_Year_Ago_Sting', src: './music/Almost_a_Year_Ago_Sting.mp3', imgSrc: 'https://images.unsplash.com/photo-1500762728065-466b7a170c96?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' },
+                { artist: 'Riot', name: 'Bomber_Sting', src: './music/Bomber_Sting.mp3', imgSrc: 'https://images.unsplash.com/photo-1579521368384-d7fb00ac080f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80' },
+                { artist: 'The 126ers', name: 'On_My_Way_Home_Sting', src: './music/On_My_Way_Home_Sting.mp3', imgSrc: 'https://images.unsplash.com/photo-1579550752291-74213f625700?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80' },
+                { artist: 'The U.S. Marine Corps Band', name: 'Dinner_Chimes', src: './music/Dinner_Chimes.mp3', imgSrc: 'https://images.unsplash.com/photo-1579489667799-0f49a083efc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80' },
+                { artist: 'John Deley and the 41 Players', name: 'Dixie_Outlandish_Sting', src: './music/Dixie_Outlandish_Sting.mp3', imgSrc: 'https://images.unsplash.com/photo-1576485290814-1c72aa4bbb8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' },
+                { artist: 'Riot', name: 'One_Step_Closer', src: './music/One_Step_Closer.mp3', imgSrc: 'https://images.unsplash.com/photo-1578605002661-69450a97476d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80' },
+                { artist: 'John Deley and the 41 Players', name: 'Minor_Mush_Sting', src: './music/Minor_Mush_Sting.mp3', imgSrc: 'https://images.unsplash.com/photo-1578283862070-85ed5daa8c9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=281&q=80' },
 
             ],
-            lyricsUrl: './lyrics.json',
-            lyrics: [],
-            isLyric: false,
             originalMusic: [],
-            index: 0,
-            isPlay: false,
+            startMusic: false,//是否開始音樂
             isLoop: 0,
             isShuffle: false,
-            currentTime: 0,
-            durationTime: 0,
-            playList: false,
+            currentTime: null,
+            durationTime: null,
+            touch: false,
+            followPage: false,
+            playListPage: false,
             AD: 0,
-            ADPage: false,
             VIP: false,
             search: '',
         },
-        mounted() {
-            this.originalMusic = [...this.music];
-            this.getLyrics();
-            this.backgroundImg();
-            this.nowTime();
-        },
         computed: {
-            current() {
-                let minute = Math.floor(this.currentTime / 60);
-                let second = this.currentTime % 60;
-                second < 10 ? second = '0' + second : second;
-                return `${minute}:${second}`
+            //目前音樂
+            nowSong() {
+                return this.music[this.index].src;
             },
-            duration() {
-                let minute = Math.floor((this.durationTime - this.currentTime) / 60);
-                let second = (this.durationTime - this.currentTime) % 60;
-                second < 10 ? second = '0' + second : second;
-                return `${minute}:${second}`
+            //目前播放
+            nowPlaying() {
+                let audio = document.querySelector('audio');
+                return audio;
             },
+            //目前時間
+            nowTimer() {
+                let second = this.currentTime || 0;
+                let minute = Math.floor(second / 60);
+                if (second >= 60) second = second % 60;
+                second < 10 ? second = '0' + second : second;
+                return `${minute}:${second}`;
+            },
+            //剩餘時間
+            allTimer() {
+                let second = this.durationTime - this.currentTime || 0;
+                let minute = Math.floor(second / 60);
+                if (second >= 60) second = second % 60;
+                second < 10 ? second = '0' + second : second;
+                return `${minute}:${second}`;
+            },
+            //進度條長度
+            timeProgress() {
+                let progress = (this.currentTime / this.durationTime) * 100 || 0;
+                return progress;
+            },
+        },
+        mounted() {
+            this.backgroundImgChange();
+            this.originalMusic = [...this.music];
         },
         methods: {
-            getLyrics(){
-                fetch(this.lyricsUrl).then(res=>{
-                    return res.json();
-                }).then(myJson=>{
-                    myJson.forEach(json=>{
-                        this.lyrics.push(json);
-                    })
-                })
+            //換背景圖片
+            backgroundImgChange() {
+                let backgroundImg = document.querySelector('.background');
+                let listBackgroundImg = document.querySelector('.play_list');
+                backgroundImg.style.backgroundImage = `url(${this.music[this.index].imgSrc})`;
+                listBackgroundImg.style.backgroundImage = `url(${this.music[this.index].imgSrc})`;
             },
-            displayLyric(){
-                this.isLyric === false ? this.isLyric = true : this.isLyric = false;
-            },
-            //播放
-            playSong() {
-                if (this.isPlay) {
-                    player.pauseVideo();
-                    this.isPlay = false;
-                } else {
-                    player.playVideo();
-                    this.isPlay = true;
+            //上一首
+            previous() {
+                let length = this.music.length;
+                this.index -= 1;
+                this.index = (this.index + length) % length;
+                this.backgroundImgChange();
+                this.nowPlaying.paused ? this.nowPlaying.autoplay = false : this.nowPlaying.autoplay = true;
+                if (!this.VIP) {
+                    this.AD += 1;
+                    this.ADTimeSlot();
                 }
             },
             //下一首
             nextSong() {
-                this.index = (this.index + this.music.length + 1) % this.music.length;
-                if (!this.isPlay) {
-                    player.cueVideoById({
-                        videoId: this.music[this.index].id
-                    });
-                } else {
-                    player.loadVideoById({
-                        videoId: this.music[this.index].id
-                    });
-                }
-                this.backgroundImg();
-                this.isLyric = false;
+                let length = this.music.length;
+                this.index += 1;
+                this.index = (this.index + length) % length;
+                this.backgroundImgChange();
+                this.nowPlaying.paused ? this.nowPlaying.autoplay = false : this.nowPlaying.autoplay = true;
                 if (!this.VIP) {
                     this.AD += 1;
                     this.ADTimeSlot();
                 }
             },
-            //上一首
-            rewindSong() {
-                this.index = (this.index + this.music.length - 1) % this.music.length;
-                if (!this.isPlay) {
-                    player.cueVideoById({
-                        videoId: this.music[this.index].id
-                    });
-                } else {
-                    player.loadVideoById({
-                        videoId: this.music[this.index].id
-                    });
-                }
-                this.backgroundImg();
-                this.isLyric = false;
-                if (!this.VIP) {
-                    this.AD += 1;
-                    this.ADTimeSlot();
-                }
+            //播放
+            playSong(index = this.index) {
+                this.index = index;
+                this.nowPlaying.paused ? this.nowPlaying.play() : this.nowPlaying.pause();
+                this.nowPlaying.autoplay = true;
+                this.backgroundImgChange();
             },
-            //循環模式
+            isPlay() {
+                this.startMusic = true;
+            },
+            isPause() {
+                this.startMusic = false;
+            },
+            //設定循環模式
             loopControl() {
+                //0=不循環, 1=循環全部歌單, 2=單曲循環
                 if (this.isLoop === 0) {
-                    this.isLoop = 1;
+                    this.isLoop = 1
+                    this.nowPlaying.loop = false;
                 } else if (this.isLoop === 1) {
-                    this.isLoop = 2;
+                    this.isLoop = 2
+                    this.nowPlaying.loop = true;
                 } else {
-                    this.isLoop = 0;
+                    this.isLoop = 0
+                    this.nowPlaying.loop = false;
                 }
             },
             //隨機播放
-            shuffleControl() {
+            shuffle() {
                 this.isShuffle === false ? this.isShuffle = true : this.isShuffle = false;
                 if (this.isShuffle === true) {
                     //把目前音樂拿出來，其他重新洗牌，再把目前音樂放到第一個
@@ -146,87 +138,85 @@ function onYouTubeIframeAPIReady() {
                     this.index = 0;//把音樂指定到第一個
                 } else if (this.isShuffle === false) {
                     //把目前音樂記下來，順序還原後，把index指定回原本音樂
-                    let nowMusic = this.music[this.index].song;
+                    let nowMusic = this.music[this.index].name;
                     this.music = [...this.originalMusic];
                     this.music.forEach((item, index) => {
-                        if (item.song === nowMusic) {
+                        if (item.name === nowMusic) {
                             this.index = index;
                         }
                     })
                 }
+                this.backgroundImgChange();
             },
-            nowTime() {
-                let timer = setInterval(() => {
-                    this.currentTime = Math.floor(player.getCurrentTime());
-                    this.durationTime = Math.floor(player.getDuration());
-                    this.timeBar();
-                }, 1000);
-            },
-            //換背景
-            backgroundImg() {
-                let mainBackground = document.querySelector('.main');
-                let listBackground = document.querySelector('.main_playlist');
-                mainBackground.style.backgroundImage = `url(${this.music[this.index].img})`;
-                listBackground.style.backgroundImage = `url(${this.music[this.index].img})`;
-            },
-            //時間條
-            timeBar() {
-                let timeBar = document.querySelector('.player_time_bar');
-                let nowTimeBar = document.querySelector('.time_bar_now');
-                nowTimeBar.style.width = `${(timeBar.offsetWidth / this.durationTime) * this.currentTime}px`;
-            },
-            moveTimeBar(e){
-                player.seekTo(e.target.value, true);
-                this.timeBar();
-            },
-            changeMusic(index) {
-                this.index = index;
-                if (!this.isPlay) {
-                    player.cueVideoById({
-                        videoId: this.music[this.index].id
-                    });
+            //下一首
+            ended() {
+                if (this.isLoop === 0) {
+                    this.nextSong();
                 } else {
-                    player.loadVideoById({
-                        videoId: this.music[this.index].id
-                    });
+                    this.nextSong();
+                    this.nowPlaying.autoplay = true;
                 }
-                this.backgroundImg();
-                this.isLyric = false;
                 if (!this.VIP) {
                     this.AD += 1;
                     this.ADTimeSlot();
                 }
             },
-            changePlayList() {
-                this.playList === false ? this.playList = true : this.playList = false;
-            },
             //廣告時段
             ADTimeSlot() {
                 if (this.AD === 3) {
                     this.AD = 0;
-                    this.ADPage = true;
-                    player.pauseVideo();
+                    this.followPage = true;
+                    this.nowPlaying.pause();
+                    this.isPause();
+                    this.nowPlaying.autoplay = false;
                 }
-            },
-            showAD() {
-                this.ADPage === false ? this.ADPage = true : this.ADPage = false;
             },
             buyVip() {
                 this.VIP = true;
             },
-            //監控目前音樂狀態
-            onPlayerStateChange(e) {
-                if (e.data === YT.PlayerState.PLAYING) {
-                    this.isPlay = true;
-                } else if (e.data === YT.PlayerState.PAUSED) {
-                    this.isPlay = false;
-                } else if (e.data === YT.PlayerState.ENDED) {
-                    if (this.isLoop === 0) this.isPlay = false;
-                    if (this.isLoop === 1) this.nextSong();
-                    if (this.isLoop === 2) player.playVideo();
+            //更新目前時間
+            updateTime() {
+                this.currentTime = Math.floor(this.nowPlaying.currentTime);
+                this.durationTime = Math.floor(this.nowPlaying.duration);
+                this.timerBar();
+            },
+            //進度條
+            timerBar() {
+                let bar = document.querySelector('.time_bar');
+                let barBtn = document.querySelector('.time_bar_btn');
+                bar.style.width = `${this.timeProgress}%`;
+                barBtn.style.left = `${this.timeProgress}%`;
+            },
+            //點擊調整進度條
+            clickBarTimer(e) {
+                if (!this.nowPlaying.currentTime) return;
+                let bar = document.querySelector('.time_bar_bg');
+                let clickTime = (e.offsetX / bar.offsetWidth) * this.durationTime;
+                this.nowPlaying.currentTime = Math.floor(clickTime);
+            },
+            //(手機觸控)
+            moveBarTime(e) {
+                if (!this.touch) return;
+                this.nowPlaying.pause();
+                let rect = e.target.getBoundingClientRect();
+                let client = e.touches[0].pageX - rect.width;
+                let bar = document.querySelector('.time_bar_bg');
+                let clickTime = (client / bar.offsetWidth) * this.durationTime;
+                this.nowPlaying.currentTime = Math.floor(clickTime);
+            },
+            touchStart() {
+                this.touch === false ? this.touch = true : this.touch = false;
+                if (!this.touch) {
+                    this.nowPlaying.play();
                 }
-                console.log(e.data);
+            },
+            follow() {
+                this.followPage === false ? this.followPage = true : this.followPage = false;
+            },
+            playList() {
+                this.playListPage === false ? this.playListPage = true : this.playListPage = false;
             }
+
         }
     })
-})(Vue)
+})(Vue);
