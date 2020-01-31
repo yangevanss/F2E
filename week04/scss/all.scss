@@ -17,16 +17,15 @@ $btnGreen: #D5F5E9;
 }
 body,
 html{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
     font-family: '微軟正黑體'
 }
 .main {
-    width: 100vw;
+    width: 100%;
     font-family: 'Noto Sans TC', sans-serif;
     &::before {
         content: '';
-        width: 100vw;
+        width: 100%;
         height: 22.5vh;
         position: fixed;
         bottom: 0;
@@ -42,15 +41,14 @@ html{
     height: 100vh;
     display: flex;
     justify-content: flex-end;
+    align-items: flex-start;
     margin: auto;
 }
 .main_slide {
-    width: 27.14%;
-    max-width: 234px;
-    height: 35.125%;
+    width: 234px;
     margin-top: 15vh;
     background-color: $mainGray_L;
-    padding: 24px 0 0 26px;
+    padding: 24px 0 26px 24px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     position: relative;
@@ -73,7 +71,6 @@ html{
 .pay{
     width: 100%;
     max-width: 628px;
-    height: 85vh;
     box-shadow: 0 2px 13px rgba(0,0,0,0.08);
     background-color: $normalWhite;
     border-top-right-radius: 10px;
@@ -122,8 +119,8 @@ html{
     &_gray{
         background-color: $mainGray_D;
         position: absolute;
-        top: 45%;
-        left: -37%;
+        bottom: -64px;
+        left: 0;
         z-index: 10;
     }
     &_green_L {
@@ -145,7 +142,7 @@ html{
     align-items: center;
     list-style: none;
     position: relative;
-    width: 306px;
+    width: 300px;
     height: 15vh;
     margin: auto;
     font-size: 1.25rem;
@@ -176,7 +173,7 @@ html{
         height: 12vh;
     }
     .container {
-        width: 100vw;
+        width: 100%;
         margin: auto;
         justify-content: stretch;
     }
@@ -194,14 +191,13 @@ html{
         overflow: hidden;
         z-index: 2;
         &:hover {
-            left: 50vw;
+            left: 30%;
             .main_slide_text {
                 display: block;
                 position: fixed;
                 top: 80px;
                 left: 0;
-                width: 50vw;
-                height: 60vh;
+                width: 30%;
                 background-color: $mainGray_L;
                 box-shadow: 0 2px 2px rgba(0,0,0,0.2);
                 padding: 10px 20px;
@@ -226,52 +222,19 @@ html{
     }
     .pay {
         height: auto;
-        padding: 10.58% 7.5% 0;
         border-radius: 0;
         position: relative;
-        &_next {
-            margin-top: 0;
-            position: absolute;
-            top: 0px;
-            right: 0px;
-        }
+        padding-bottom: 50px;
         &_text {
             margin-bottom: 35px;
         }
     }
     .btn{
         &_gray{
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
         }
     }
 }
 
-@media screen and (max-width: 600px) {
-    .pay {
-        height: 76vh;
-        padding: 10.58% 7.5% 20.58%;
-        &_next {
-            position: absolute;
-            top: auto;
-            bottom: 0px;
-            right: 0px;
-        }
-    }
-    .btn{
-        &_gray{
-            position: absolute;
-            top: auto;
-            bottom: -60px;
-            left: 30px;
-        }
-    }
-    .main_slide {
-        &:hover{
-            .main_slide_text {
-                height: 35vh;
-            }
-        }
-    }
-}

@@ -10,7 +10,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 1280px;
-  min-height: 100vh;
+  height: 100vh;
   text-transform: uppercase;
   position: relative;
   margin: 0 auto;
@@ -94,7 +94,7 @@
   display: -ms-flexbox;
   display: flex;
   color: #FF4384;
-  font-size: 11rem;
+  font-size: 8rem;
 }
 
 .title {
@@ -200,6 +200,7 @@
   position: absolute;
   top: 15%;
   right: 180px;
+  z-index: 99;
 }
 
 .circle > div {
@@ -222,6 +223,15 @@
   top: 40%;
   left: 40%;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .circle > div > div > div {
@@ -236,9 +246,6 @@
 .circle i {
   font-size: 4.5rem;
   color: #FF4384;
-  position: absolute;
-  top: 12px;
-  left: 12px;
 }
 
 .circleActive {
@@ -251,6 +258,7 @@
   position: absolute;
   top: 15%;
   right: 180px;
+  z-index: 99;
 }
 
 .circleActive > div {
@@ -276,6 +284,15 @@
   top: 40%;
   left: 40%;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .circleActive > div > div > div {
@@ -290,9 +307,6 @@
 .circleActive i {
   font-size: 4.5rem;
   color: #FFFFFF;
-  position: absolute;
-  top: 12px;
-  left: 12px;
 }
 
 .circleB {
@@ -402,6 +416,7 @@
 
 .blue {
   width: 35%;
+  height: 100%;
   background-color: #003164;
   text-align: right;
   -webkit-box-sizing: border-box;
@@ -410,12 +425,24 @@
   color: #FFFFFF;
 }
 
-.blue ul {
-  list-style: none;
+.blue > div {
+  height: 100%;
+  position: relative;
 }
 
-.blue li {
-  margin-top: 48px;
+.blue ul {
+  height: 50%;
+  max-height: 400px;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .blue i {
@@ -424,9 +451,10 @@
 }
 
 .blue p {
+  position: absolute;
+  right: 0;
+  bottom: 48px;
   font-size: 1.5rem;
-  margin-top: 335px;
-  margin-left: 334px;
   -webkit-writing-mode: vertical-rl;
       -ms-writing-mode: tb-rl;
           writing-mode: vertical-rl;
@@ -439,7 +467,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 1280px;
-  min-height: 100vh;
+  height: 100vh;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 45px 85px 0;
@@ -541,22 +569,28 @@
   position: absolute;
   top: 7px;
   left: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .circleS > div i {
   color: #FFFFFF;
   font-size: 4rem;
-  position: absolute;
-  top: 10px;
-  left: 10px;
 }
 
 .todoList {
-  margin: 0 0 48px 125px;
+  margin-left: 125px;
 }
 
 .analytics {
-  margin: 0 0 48px 125px;
+  margin-left: 125px;
 }
 
 .analyticsBox {
@@ -601,9 +635,13 @@
           justify-content: flex-end;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  position: relative;
 }
 
 .chartY {
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -673,7 +711,7 @@
 }
 
 .music {
-  margin: 0 0 48px 125px;
+  margin-left: 125px;
 }
 
 .musicBoxes {
@@ -846,6 +884,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  position: relative;
 }
 
 .slide i {
@@ -853,11 +892,13 @@
 }
 
 .slide p {
+  position: absolute;
+  right: 0;
+  bottom: 48px;
   font-size: 1.5rem;
-  -webkit-writing-mode: vertical-lr;
-      -ms-writing-mode: tb-lr;
-          writing-mode: vertical-lr;
-  margin-bottom: 48px;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
 }
 
 .done {
@@ -876,4 +917,3 @@
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
-/*# sourceMappingURL=all.css.map */
