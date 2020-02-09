@@ -1,0 +1,234 @@
+$white: #FFFFFF;
+$lightBlue: #F2F9FD;
+$blue: #83C1E9;
+$orange: #F3CC9A;
+$green: #B1E5BB;
+$text: #000000B3;
+$grayText: #00000080;
+$gray: #0000004D;
+$lightGray: #ECEAEA;
+$shadow: rgba(0, 0, 0, .1);
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, input, button{
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+}
+body{
+  display: flex;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: $white;
+}
+::-webkit-scrollbar-thumb {
+  background: $gray;
+}
+.side_nav {
+  width: 25%;
+  max-width: 500px;
+  min-width: 380px;
+  height: 100vh;
+  background-color: $white;
+  box-shadow: 1px 1px 3px $shadow;
+  &_header {
+    width: 100%;
+    height: 220px;
+    background-color: $lightBlue;
+    padding: 24px 30px;
+    color: $text;
+    box-shadow: 1px 1px 3px $shadow;
+    h2 {
+      font-size: 20px;
+      font-weight: normal;
+    }
+    input {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border: none;
+      padding: 10px;
+      color: $text;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .search {
+      display: flex;
+      width: 100%;
+      height: 36px;
+      background-color: $white;
+      border-radius: 28px;
+      margin: 16px 0 8px;
+      overflow: hidden;
+      >div {
+        width: 30px;
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5px;
+      }
+    }
+  }
+  &_select {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &_option {
+    width: 33.33%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: $white;
+    color: $text;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    &:nth-of-type(2){
+      margin: 0 30px;
+    }
+    >ul {
+      visibility: hidden;
+      opacity: 0;
+      list-style: none;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 20px;
+      background-color: $white;
+      color: $text;
+      font-size: 14px;
+      line-height: 27px;
+      box-shadow: 1px 1px 3px $shadow;
+      transition: all .3s;
+      >li {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 20px;
+        transition: background-color .3s;
+        &:hover {
+          background-color: $lightGray;
+        }
+        &.active {
+          background-color: $orange;
+          color: $white;
+        }
+      }
+    }
+    &:hover {
+      >ul {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+  &_container {
+    padding: 24px 30px;
+    width: 100%;
+    height: calc(100% - 220px);
+    overflow-y: auto;
+  }
+  &_info {
+    width: 100%;
+    padding-bottom: 24px;
+    border-bottom: 1px solid $gray;
+    color: $grayText;
+    cursor: pointer;
+    .info_title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      h2{
+        color: $text;
+        font-size: 20px;
+      }
+      p{
+        font-size: 14px;
+      }
+    }
+    .info {
+      font-size: 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      p {
+        color: $grayText;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+.mask_status {
+  display: flex;
+  justify-content: space-between;
+  div {
+    width: 48%;
+    height: 48px;
+    border-radius: 24px;
+    font-size: 16px;
+    color: $text;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    >span {
+      font-size: 24px;
+      margin: 0 4px;
+    }
+  }
+  .adult {
+    background-color: $orange;
+    &.no_mask {
+      background-color: $gray;
+    }
+  }
+  .child {
+    background-color: $green;
+    &.no_mask {
+      background-color: $gray;
+    }
+  }
+}
+.container {
+  width: 100%;
+  height: 100vh;
+}
+.marker {
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+  min-width: 300px;
+  .leaflet-popup-close-button{
+    top: 10px !important;
+    right: 10px !important;
+  }
+}
+.return_position {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: $white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 3px $shadow;
+  z-index: 999;
+  cursor: pointer;
+  >img {
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+  }
+}
