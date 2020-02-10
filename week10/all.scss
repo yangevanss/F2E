@@ -35,9 +35,19 @@ body{
   height: 100vh;
   background-color: $white;
   box-shadow: 1px 1px 3px $shadow;
+  &_date {
+    display: flex;
+    font-weight: normal;
+    font-size: 16px;
+    span {
+      color: $orange;
+      font-weight: bold;
+      font-size: 24px;
+      margin: 0 5px;
+    }
+  }
   &_header {
     width: 100%;
-    height: 220px;
     background-color: $lightBlue;
     padding: 24px 30px;
     color: $text;
@@ -54,9 +64,9 @@ body{
       padding: 10px;
       color: $text;
     }
-    p {
+    >p {
       font-size: 14px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .search {
       display: flex;
@@ -81,9 +91,10 @@ body{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
   }
   &_option {
-    width: 33.33%;
+    width: 45%;
     height: 40px;
     border-radius: 20px;
     background-color: $white;
@@ -92,9 +103,6 @@ body{
     border: none;
     cursor: pointer;
     position: relative;
-    &:nth-of-type(2){
-      margin: 0 30px;
-    }
     >ul {
       visibility: hidden;
       opacity: 0;
@@ -135,7 +143,7 @@ body{
   &_container {
     padding: 24px 30px;
     width: 100%;
-    height: calc(100% - 220px);
+    height: calc(100% - 272.8px);
     overflow-y: auto;
   }
   &_info {

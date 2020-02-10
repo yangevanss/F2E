@@ -6,7 +6,7 @@
   const options = [...document.querySelectorAll('.side_nav_option li')]
   let [latitude, longitude] = await getPosition()
   let infoData = await getMaskInfo()
-  const map = L.map('map').setView([latitude, longitude], 16).on('dragend', dragendHandler);
+  const map = L.map('map').setView([latitude, longitude], 16).on('dragend', getAroundStore).on('zoomend', getAroundStore);
   const userIcon = L.icon({
     iconUrl: './img/dot.svg',
     iconSize: [38, 95],
@@ -35,7 +35,6 @@
   searchBtn.addEventListener('click', searchCustomStore)
   const optionMap = {
     distance: optionDistance,
-    storeStatus: optionStoreStatus,
     maskType: optionMaskType
   }
   const optionStatus = options.reduce((prev, dom) => {
@@ -59,7 +58,7 @@
         let type = dom.parentNode.dataset.type
         dom.classList.add('active')
         optionMap[type](dom.dataset.option)
-        getAroundStore(infoData)
+        getAroundStore()
       }else {
         dom.classList.remove('active')
       }
@@ -74,7 +73,6 @@
     optionProxy[type][index] = {status: true, dom: dom[index]}
   }
   function optionDistance(info){range = info}
-  function optionStoreStatus(info){}
   function optionMaskType(info){maskType = info}
   function getPosition(){
     return new Promise(resolve=>{
@@ -91,6 +89,16 @@
         .catch(err=>console.log(err))
     })
   }
+  function getDateInfo(){
+    const dayInfo = ['日', '一', '二', '三', '四', '五', '六']
+    let day = new Date().getDay()
+    document.getElementById('day').innerText = dayInfo[day]
+    document.getElementById('buyInfo').innerHTML = day === 0 
+    ? '全部<span>皆</span>可購買' 
+    : day % 2 === 0 
+    ? '身分證末碼為<span>偶數</span>可購買'
+    : '身分證末碼為<span>基數</span>可購買'
+  }
   function getSildInfo(maskInfo){
     sideInfo = document.querySelectorAll('.side_nav_info')
     if(sideInfo.length){
@@ -105,7 +113,7 @@
       div.innerHTML = `
       <div class="info_title">
         <h2>${properties.name}</h2>
-        <p>營業中 | ${distance >= 1 ? distance.toFixed(1) + 'km' : (distance * 1000 >>0) + 'm'}</p>
+        <p>約 ${distance >= 1 ? distance.toFixed(1) + 'km' : (distance * 1000 >>0) + 'm'}</p>
       </div>
       <div class="info">
         <img src="./img/place-24px.svg" alt="place">
@@ -161,8 +169,8 @@
   function getDistance(lat1, lng1, lat2, lng2){
     return 2 * 6378.137 * Math.asin(Math.sqrt(Math.pow(Math.sin(Math.PI * (lat1-lat2)/360), 2)+Math.cos(Math.PI * lat1/180) * Math.cos(Math.PI * lat2/180)*Math.pow(Math.sin(Math.PI*(lng1-lng2)/360), 2)))
   }
-  function getAroundStore(info){
-    locationInfoProxy.data = filterStoreStatus(filterMaskType(filterRangeStore(info))).filter((info, index) => index < 200)
+  function getAroundStore(){
+    locationInfoProxy.data = filterMaskType(filterRangeStore(infoData)).filter((info, index) => index < 200)
   }
   function searchCustomStore(e){
     if(e.keyCode === 13 || e.type === "click"){
@@ -196,18 +204,11 @@
   function filterMaskType(info){
     return info.filter( info => maskType ? info.properties[maskType] !== 0 : info)
   }
-  function filterStoreStatus(info){
-    return info.filter( info => {
-      return info
-    })
-  }
   function resetPosition(){
     searchInput.value = ''
     map.panTo([latitude, longitude], 16)
-    getAroundStore(infoData)
+    getAroundStore()
   }
-  function dragendHandler(){
-    getAroundStore(infoData)
-  }
-  getAroundStore(infoData)
+  getAroundStore()
+  getDateInfo()
 })()
