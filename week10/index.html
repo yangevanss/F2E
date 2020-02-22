@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>口罩地圖 | MASK MAP</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700|Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
   crossorigin=""/>
-  <link rel="stylesheet" href="./all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="./css/all.min.css">
 </head>
 <body>
   <aside class="side_nav">
@@ -45,6 +48,9 @@
         <p>星期<span id="day">一</span>，</p>
         <p id="buyInfo">身分證末碼為<span>基數</span>可購買</p>
       </div>
+      <span class="switch">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </span>
     </div>
     <div class="side_nav_container"></div>
   </aside>
@@ -55,6 +61,12 @@
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
   crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+  <script>
+    const switchBtn = document.querySelector('.switch')
+    const sideNav = document.querySelector('.side_nav')
+    switchBtn.addEventListener('click', () => sideNav.classList.toggle('active'))
+  </script>
   <script src="./all.js"></script>
 </body>
 </html>

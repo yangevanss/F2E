@@ -4,6 +4,12 @@
   const searchInput = document.getElementById('searchInput')
   const searchBtn = document.getElementById('search')
   const options = [...document.querySelectorAll('.side_nav_option li')]
+  const infiniteOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: [0]
+  }
+  const observerInfinite = new IntersectionObserver(infiniteData, infiniteOptions)
   let [latitude, longitude] = await getPosition()
   let infoData = await getMaskInfo()
   const map = L.map('map').setView([latitude, longitude], 16).on('dragend', getAroundStore).on('zoomend', getAroundStore);
@@ -13,15 +19,15 @@
     iconAnchor: [22, 94],
   })
   L.marker([latitude, longitude], {icon: userIcon}).addTo(map);
-  let markers = [], markerGroup, locationInfo = {data: []}, sideInfo, range, maskType
+  let markers = [], locationInfo = {data: []}, sideInfo, range, maskType, markerCluster, dataCount = 0
   const locationInfoProxy = new Proxy(locationInfo, {
     get(target, key){
       return target[key]
     },
     set(target, key, val){
+      getSildInfo(val)
+      getMarkers(val)
       target[key] = val
-      getSildInfo(target[key])
-      getMarkers(target[key])
       return true
     }
   })
@@ -85,7 +91,7 @@
     return new Promise(resolve=>{
       fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
         .then(res=>res.json())
-        .then(json=>resolve(json.features))
+        .then(json=>resolve(Object.freeze(json.features)))
         .catch(err=>console.log(err))
     })
   }
@@ -99,14 +105,21 @@
     ? '身分證末碼為<span>偶數</span>可購買'
     : '身分證末碼為<span>基數</span>可購買'
   }
+  
   function getSildInfo(maskInfo){
+    dataCount = 0
     sideInfo = document.querySelectorAll('.side_nav_info')
     if(sideInfo.length){
       sideInfo.forEach(child => container.removeChild(child))
+      container.scrollTop = 0
     }
-    maskInfo.sort(({geometry: {coordinates: a}}, {geometry: {coordinates: b}})=>{
-      return getDistance(latitude, longitude, a[1], a[0]) - getDistance(latitude, longitude, b[1], b[0])
-    }).forEach(({properties, geometry: {coordinates}})=>{
+    let info = maskInfo.sort(({geometry: {coordinates: a}}, {geometry: {coordinates: b}}) =>
+      getDistance(latitude, longitude, a[1], a[0]) - getDistance(latitude, longitude, b[1], b[0])
+    )
+    addSlidInfo(info)
+  }
+  function addSlidInfo(maskInfo){
+    maskInfo.slice(dataCount, dataCount + 20).forEach(({properties, geometry: {coordinates}})=>{
       let distance = getDistance(latitude, longitude, coordinates[1], coordinates[0])
       let div = document.createElement('div')
       div.className = 'side_nav_info'
@@ -133,9 +146,18 @@
       </div>
       `
       container.appendChild(div)
-      sideInfo = [...document.querySelectorAll('.side_nav_info')]
-      sideInfo.forEach(dom => dom.addEventListener('click', getStore))
     })
+    sideInfo = [...document.querySelectorAll('.side_nav_info')]
+    sideInfo.forEach(dom => dom.addEventListener('click', getStore))
+    if(sideInfo.length) observerInfinite.observe(sideInfo[sideInfo.length - 1])
+  }
+  function infiniteData(e){
+    let entry = e[0]
+    if(entry.isIntersecting){
+      dataCount += 20
+      observerInfinite.unobserve(entry.target);
+      addSlidInfo(locationInfoProxy.data)
+    }
   }
   function getMarkers(maskInfo){
     markers = []
@@ -156,21 +178,30 @@
         autoPan: false
       }))
     })
-    if(markerGroup)markerGroup.clearLayers()
-    markerGroup = L.layerGroup(markers).addTo(map);
+    if(markerCluster) markerCluster.clearLayers()
+    markerCluster = L.markerClusterGroup({
+      showCoverageOnHover: true,
+      zoomToBoundsOnClick: true
+    })
+    markerCluster.addLayer(L.layerGroup(markers))
+    map.addLayer(markerCluster);
   }
   function getStore(){
     if(!markers[sideInfo.indexOf(this)].isPopupOpen()){
+      sideNav.classList.remove('active')
       let marker = markers[sideInfo.indexOf(this)]
-      map.panTo([marker._latlng.lat, marker._latlng.lng], 16)
-      marker.openPopup()
+      map.off('zoomend', getAroundStore);
+      markerCluster.zoomToShowLayer(marker, () => {
+        marker.openPopup()
+        map.on('zoomend', getAroundStore);
+      })
     }
   }
   function getDistance(lat1, lng1, lat2, lng2){
     return 2 * 6378.137 * Math.asin(Math.sqrt(Math.pow(Math.sin(Math.PI * (lat1-lat2)/360), 2)+Math.cos(Math.PI * lat1/180) * Math.cos(Math.PI * lat2/180)*Math.pow(Math.sin(Math.PI*(lng1-lng2)/360), 2)))
   }
   function getAroundStore(){
-    locationInfoProxy.data = filterMaskType(filterRangeStore(infoData)).filter((info, index) => index < 200)
+    locationInfoProxy.data = filterMaskType(filterRangeStore(infoData))
   }
   function searchCustomStore(e){
     if(e.keyCode === 13 || e.type === "click"){
@@ -211,4 +242,5 @@
   }
   getAroundStore()
   getDateInfo()
+
 })()

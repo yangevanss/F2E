@@ -52,6 +52,7 @@ body{
     padding: 24px 30px;
     color: $text;
     box-shadow: 1px 1px 3px $shadow;
+    position: relative;
     h2 {
       font-size: 20px;
       font-weight: normal;
@@ -84,6 +85,25 @@ body{
         align-items: center;
         justify-content: center;
         padding: 0 5px;
+      }
+    }
+    .switch {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      right: -17px;
+      width: 17px;
+      height: 50px;
+      background-color: $blue;
+      border-radius: 0px 5px 5px 0px;
+      line-height: 50px;
+      text-align: center;
+      color: $white;
+      box-shadow: 1px 1px 3px $shadow;
+      cursor: pointer;
+      z-index: 999;
+      i {
+        font-size: 16px;
       }
     }
   }
@@ -238,5 +258,24 @@ body{
     width: 60%;
     height: 60%;
     object-fit: cover;
+  }
+}
+@media screen and (max-width: 479px){
+  .side_nav {
+    position: absolute;
+    top: 0;
+    left: calc(-100% + 20px);
+    width: calc(100% - 20px);
+    min-width: 325px;
+    z-index: 9999;
+    transition: left .3s;
+    &.active {
+      left: 0;
+    }
+    &_header {
+      .switch {
+        display: block;
+      }
+    }
   }
 }
